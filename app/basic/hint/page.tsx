@@ -2,9 +2,9 @@ import CardHint from "@/components/basic/CardHint";
 import Heading from "@/components/ui/Heading";
 import Image from "next/image";
 import HomeHint from "@/public/basic/home-hint.png";
-import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import ButtonBack from "@/components/ui/ButtonBack";
 
 const dataCard = [
   { judul: "LIGHTNING CHECK", subJudul: "GOOD" },
@@ -15,16 +15,6 @@ const dataCard = [
 const Page = () => {
   return (
     <div className="relative min-h-screen bg-main flex items-center justify-center text-center">
-      <Link
-        href="/"
-        className="fixed top-10 left-10 flex items-center gap-3  rounded-full  p-2 hover:text-[#7D4754]"
-      >
-        <button className="bg-white hover:bg-[#7D4754] w-10 h-10 flex items-center justify-center rounded-full ">
-          <ArrowLeft size={20} />
-        </button>
-        <span className="font-semibold tracking-wide">BACK</span>
-      </Link>
-
       <div className="flex flex-col items-center justify-center gap-6 px-6">
         <Heading />
 
@@ -47,9 +37,14 @@ const Page = () => {
           <Image src={HomeHint} alt="hint-camera" width={300} height={200} />
         </div>
 
-        <Link href="/basic/captured">
-          <Button className="berl-btn mt-4 w-40">Start</Button>
-        </Link>
+        <div className="flex gap-3">
+          <Link href="/basic/captured">
+            <Button className="berl-btn mt-4 w-40">Start</Button>
+          </Link>
+          <Link href="/">
+            <Button className="berl-btn mt-4 w-40">Kembali</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

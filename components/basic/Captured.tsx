@@ -105,7 +105,6 @@ const Captured = () => {
         />
       </div>
 
-      {/* COUNTDOWN TEXT */}
       {countdown && (
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-white text-6xl font-bold animate-pulse">
@@ -114,7 +113,6 @@ const Captured = () => {
         </div>
       )}
 
-      {/* CAPTURE BUTTON */}
       {!countdown && (
         <button
           onClick={startCountdown}
