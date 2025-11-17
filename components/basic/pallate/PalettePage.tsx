@@ -8,6 +8,8 @@ interface PalettePageProps {
   paletteImages: string[];
   nextTone: string;
   description?: string;
+  tone?: string;
+  judulTone?: string;
 }
 
 const getColorFromFilename = (path: string) => {
@@ -19,6 +21,8 @@ const PalettePage = ({
   paletteImages,
   nextTone,
   description,
+  tone,
+  judulTone,
 }: PalettePageProps) => {
   const [capturedImg] = useState(() => {
     if (typeof window !== "undefined") {
@@ -33,7 +37,7 @@ const PalettePage = ({
 
   return (
     <div
-      className="flex  flex-col-reverse lg:flex-row justify-center items-center  gap-10 lg:gap-14  px-4 py-10
+      className="flex flex-col-reverse lg:flex-row justify-center items-center px-4 gap-10 lg:gap-14 
     "
     >
       <div
@@ -76,7 +80,7 @@ const PalettePage = ({
       "
       >
         <div className="w-full text-white text-center font-bold text-lg bg-[#7C2C2C] py-3 rounded-lg">
-          SKIN TONE
+          {tone}
         </div>
 
         <div className="grid grid-cols-5 gap-5 mt-6 place-items-center">
@@ -110,6 +114,11 @@ const PalettePage = ({
           capturedImg={capturedImg}
           selectedPalette={selectedPalette}
         />
+      </div>
+
+      <div>
+        <h1 className="text-white font-bold">{judulTone}</h1>
+        <p className="text-white">{description}</p>
       </div>
     </div>
   );

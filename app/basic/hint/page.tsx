@@ -4,7 +4,6 @@ import Image from "next/image";
 import HomeHint from "@/public/basic/home-hint.png";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import ButtonBack from "@/components/ui/ButtonBack";
 
 const dataCard = [
   { judul: "LIGHTNING CHECK", subJudul: "GOOD" },
@@ -42,7 +41,7 @@ const Page = () => {
             <Button className="berl-btn mt-4 w-40">Start</Button>
           </Link>
           <Link href="/">
-            <Button className="berl-btn mt-4 w-40">Kembali</Button>
+            <Button className="berl-btn mt-4 w-40">Back</Button>
           </Link>
         </div>
       </div>

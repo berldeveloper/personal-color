@@ -27,6 +27,7 @@ const Page = () => {
         paletteImages={paletteImages}
         nextTone="/basic/undertone-1"
         description="Please identify with natural bright light"
+        tone="SKIN TONE"
       />
     </div>
   );
