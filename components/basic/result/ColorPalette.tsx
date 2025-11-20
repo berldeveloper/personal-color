@@ -21,12 +21,12 @@ const ColorPalette = () => {
 
     return (
         <>
-            <div className="w-[20vw] flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center gap-3">
                 <div className="berl-btn p-3">
                     <h1 className="">Color Palette</h1>
                 </div>
 
-                <div className="relative w-[20vw] ">
+                <div className="relative w-[90vw] md:w-[20vw] ">
                     <div className="bg-berl-2 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] flex items-center px-18 py-4 relative">
                         {/* SCROLL AREA */}
                         <div
@@ -45,7 +45,7 @@ const ColorPalette = () => {
                         {/* LEFT BUTTON */}
                         <button
                             onClick={() => scroll("left")}
-                            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md w-10 h-10  rounded-full flex items-center justify-center hover:scale-105 transition mx-4"
+                            className="absolute cursor-pointer left-0 top-1/2 -translate-y-1/2 bg-white shadow-md w-10 h-10  rounded-full flex items-center justify-center hover:scale-105 transition mx-4"
                         >
                             <ChevronLeft className="text-rose-300" />
                         </button>
@@ -53,7 +53,7 @@ const ColorPalette = () => {
                         {/* RIGHT BUTTON */}
                         <button
                             onClick={() => scroll("right")}
-                            className=" absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md w-10 h-10  rounded-full flex items-center justify-center hover:scale-105 transition mx-4
+                            className=" absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 bg-white shadow-md w-10 h-10  rounded-full flex items-center justify-center hover:scale-105 transition mx-4
           "
                         >
                             <ChevronRight className="text-rose-300" />

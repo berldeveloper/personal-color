@@ -3,23 +3,37 @@ import ColorPalette from "./ColorPalette";
 import HeaderLeft from "./HeaderLeft";
 
 const ResultComponent = () => {
- 
+
   return (
-    <div className="bg-main flex flex-col min-h-screen">
+    <div className="bg-main flex justify-between min-h-screen p-3">
 
-      <div>
-        <HeaderLeft/>
+      {/* kiri */}
+      <div className="flex flex-col">
+        <div>
+          <HeaderLeft />
+        </div>
+
+        {/* spacer */}
+        <div className="pt-[42vh] md:pt-[42vh]"></div>
+
+        <div className="md:w-[30vw] mb-3">
+          <ColorPalette />
+        </div>
+
+        <div className="md:w-[30vw] mb-4">
+          <ClosestPartner />
+        </div>
       </div>
 
-      {/* spacer */}
-      <div className="pt-[42vh] md:pt-[42vh]"></div>
-
-      <div className="p-6">
-        <ColorPalette />
-      </div>
-
+      {/* tengah */}
       <div>
-        <ClosestPartner/>
+        <h1>TENGAH</h1>
+      </div>
+      
+      
+      {/* kanan */}
+      <div>
+        <h1>KANAN</h1>
       </div>
 
     </div>
