@@ -52,7 +52,7 @@ const PalettePage = ({
             />
           </div>
 
-          <div className="w-full bg-[#C36262] text-white text-center text-xs py-2 mt-4 rounded-md font-semibold">
+          <div className="w-full  bg-[#C36262] text-white text-center text-xs py-2 mt-4 rounded-md font-semibold">
             {description}
           </div>
 
@@ -116,9 +116,9 @@ const PalettePage = ({
         />
       </div>
 
-      <div>
-        <h1 className="text-white font-bold">{judulTone}</h1>
-        <p className="text-white">{description}</p>
+      <div className="mt-10">
+        <h1 className="text-[#7D4754]  font-bold">{judulTone}</h1>
+        <p className="text-[#7D4754] font-semibold hidden md:block">{description}</p>
       </div>
     </div>
   );

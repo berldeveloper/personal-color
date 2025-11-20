@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center text-center bg-main">
       <div>
-        <Heading />
+        <Heading size="md"/>
       </div>
 
       <h1 className="text-[#7D4754] font-bold text-4xl md:text-5xl leading-tight mb-4">
@@ -28,14 +28,14 @@ const Home = () => {
           </Button>
         </Link>
 
-        <Link href="/expert/hint" className="berl-btn">
+        {/* <Link href="/expert/hint" className="berl-btn">
           <Button className="berl-btn">
             Expert
             <div className="text-white/80 text-xs font-medium italic">
               7 steps
             </div>
           </Button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

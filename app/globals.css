@@ -78,6 +78,28 @@
   --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
+/* hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+.font-tangerine {
+  font-family: var(--font-tangerine);
+}
+.font-rubik {
+  font-family: var(--font-rubik-dirt);
+}
+.font-baloo {
+  font-family: var(--font-baloo);
+}
+
+
 .bg-berl {
   background: #b35e14;
   background: linear-gradient(
@@ -85,6 +107,14 @@
     rgba(179, 94, 20, 1) 44%,
     rgba(176, 159, 28, 1) 100%
   );
+}
+
+.text-berl {
+  color: #7D4754;
+}
+
+.bg-berl-2 {
+  background:#E8D1C5;
 }
 
 .bg-main {

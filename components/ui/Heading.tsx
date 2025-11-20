@@ -7,11 +7,11 @@ const Heading = ({ size = "md" }: HeadingProps) => {
     <div className="flex flex-col items-center justify-center text-center">
       <div className="mb-10">
         <p
-          className={`text-[#7D4754] font-semibold tracking-wide text-${size}`}
+          className={`text-[#7D4754] font-semibold font-baloo tracking-wide text-${size}`}
         >
           Berl
         </p>
-        <p className={`text-[#7D4754] tracking-wider font-medium text-${size}`}>
+        <p className={`text-[#7D4754] tracking-wider font-baloo font-medium text-${size}`}>
           COLOR EXPERT
         </p>
       </div>
