@@ -3,8 +3,8 @@ import ButtonBack from "@/components/ui/ButtonBack";
 import ButtonNext from "@/components/ui/ButtonNext";
 
 const paletteImages = [
-  "/undertone-1/face-bg-081f5C.png",
-  "/undertone-1/face-bg-ED652B.png",
+  "/undertone-1/face-bg-081f5c.png",
+  "/undertone-1/face-bg-ed652b.png",
 ];
 
 const Page = () => {
