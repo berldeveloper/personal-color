@@ -1,42 +1,94 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "../ui/button";
 import Heading from "../ui/Heading";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const Home = () => {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleAllow = () => {
+    setLoading(true);
+
+    if (!navigator.geolocation) {
+      alert("Browser kamu tidak mendukung akses lokasi.");
+      setLoading(false);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLoading(false);
+        const { latitude, longitude } = position.coords;
+        console.log("Lokasi berhasil:", latitude, longitude);
+        localStorage.setItem("user_lat", latitude.toString());
+        localStorage.setItem("user_long", longitude.toString());
+
+        window.location.href = "/hint";
+      },
+      (error) => {
+        setLoading(false);
+        alert("Gagal mendapatkan lokasi. Pastikan izin lokasi diaktifkan.");
+        console.error(error);
+      }
+    );
+  };
+
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center text-center bg-main">
+    <div className="h-screen w-full flex flex-col items-center justify-center text-center bg-utama">
       <div>
-        <Heading size="md"/>
+        <Heading size="md" />
       </div>
 
-      <h1 className="text-[#7D4754] font-bold text-4xl md:text-5xl leading-tight mb-4">
-        Find Your <br /> Personal Color
+      <h1 className="text-[#4A2E1F] font-bold text-4xl md:text-5xl leading-tight mb-4">
+        Temukan <br />
+        Warna Pribadimu
       </h1>
 
-      <p className="text-[#7D4754]/90 text-base md:text-lg max-w-sm leading-relaxed mb-12">
-        Get to know your <br /> personal color to find the <br /> colors that
-        suit you best!
+      <p className="text-[#4A2E1F]/90 text-base md:text-lg max-w-md font-bold mb-12">
+        Kenali warna pribadi kamu untuk menemukan <br />
+        warna-warna yang paling cocok untukmu!
       </p>
 
       <div className="flex flex-col gap-6 w-full h-auto max-w-xs">
-        <Link href="/basic/hint" className="berl-btn">
-          <Button className="berl-btn">
-            Basic
-            <div className="text-white/80 text-xs font-medium italic">
-              4 steps
-            </div>
-          </Button>
-        </Link>
-
-        {/* <Link href="/expert/hint" className="berl-btn">
-          <Button className="berl-btn">
-            Expert
-            <div className="text-white/80 text-xs font-medium italic">
-              7 steps
-            </div>
-          </Button>
-        </Link> */}
+        <Button className="berl-btn" onClick={() => setOpen(true)}>
+          Mulai
+        </Button>
       </div>
+
+      {/* Modal Akses Lokasi */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="text-center">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold">
+              Aktifkan Lokasi
+            </DialogTitle>
+            <DialogDescription>
+              Kami membutuhkan akses lokasi untuk memberikan rekomendasi warna yang sesuai.
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogFooter className="flex justify-center gap-4 mt-6">
+            <Button variant="outline" onClick={() => setOpen(false)}>
+              Batal
+            </Button>
+
+            <Button onClick={handleAllow} disabled={loading}>
+              {loading ? "Mengambil lokasi..." : "Izinkan"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
