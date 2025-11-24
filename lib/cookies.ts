@@ -54,6 +54,13 @@ export const getUnderTone = (): string[] => {
   }
 };
 
+export const getAllColorCookies = () => {
+  return {
+    skinTone: getSkinTone(),
+    underTone: getUnderTone(),
+  };
+};
+
 export const clearCookies = () => {
   Cookies.remove(UNDER_TONE_KEY);
   Cookies.remove(SKIN_TONE_KEY);
