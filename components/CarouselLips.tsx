@@ -36,9 +36,12 @@ const CarouselLips = () => {
     >
       <CarouselContent>
         {LipImages.map((item, index) => (
-          <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
+          <CarouselItem
+            key={index}
+            className="basis-1/2 sm:basis-1/2 lg:basis-1/3"
+          >
             <div className="p-3 flex justify-center">
-              <div className="w-full   flex justify-center items-center">
+              <div className="w-full flex justify-center items-center">
                 <Image
                   src={item.src}
                   alt=""
@@ -49,7 +52,6 @@ const CarouselLips = () => {
           </CarouselItem>
         ))}
       </CarouselContent>
-
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>

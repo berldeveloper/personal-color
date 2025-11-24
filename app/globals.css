@@ -88,7 +88,6 @@
   scrollbar-width: none; /* Firefox */
 }
 
-
 .font-tangerine {
   font-family: var(--font-tangerine);
 }
@@ -98,7 +97,6 @@
 .font-baloo {
   font-family: var(--font-baloo);
 }
-
 
 .bg-berl {
   background: #b35e14;
@@ -110,11 +108,11 @@
 }
 
 .text-berl {
-  color: #4A2E1F;
+  color: #4a2e1f;
 }
 
 .bg-berl-2 {
-  background:#E8D1C5;
+  background: #e8d1c5;
 }
 
 .bg-utama {
@@ -123,6 +121,15 @@
   background-position: center;
 }
 
+.bg-result {
+  background: linear-gradient(
+    160deg,
+    #fff9e8 18%,
+    /* creamy soft gold */ #fff3d4 30%,
+    /* pale gold */ #ffffff 50%,
+    /* clean white */ #ffefd1 75% /* warm soft gold */
+  );
+}
 
 .bg-main {
   background-image: url("/bg/1.jpg");
@@ -150,6 +157,16 @@
     inset 0 0 40px rgba(255, 255, 255, 0.2);
 
   border-radius: 24px;
+}
+
+.bg-card-component {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 249, 232, 0.8),
+    /* very soft gold */ rgba(255, 243, 212, 0.7) /* pale gold */
+  );
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 230, 180, 0.4);
 }
 
 .bg-component {

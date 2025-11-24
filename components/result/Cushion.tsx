@@ -33,7 +33,7 @@ const Cushion = () => {
             </div>
 
             <div className="flex flex-wrap justify-center gap-2 items-center mt-5">
-                <div className="w-[100px] h-[150px] bg-white flex flex-col gap-4 justify-center items-center p-1" style={{ borderRadius: '50px 50px 18px 18px' }}>
+                <div className="w-[100px] h-[150px] bg-card-component shadow-3xl border-2 flex flex-col gap-4 justify-center items-center p-1" style={{ borderRadius: '50px 50px 18px 18px' }}>
                     <div className="rounded-full bg-[#FDBA74] w-20 h-20"></div>
                     <h1 className="text-bold text-berl font-baloo">#FDBA74</h1>
                 </div>

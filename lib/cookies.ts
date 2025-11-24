@@ -5,9 +5,8 @@ import Cookies from "js-cookie";
 const SKIN_TONE_KEY = "selectedColorSkinTone";
 const UNDER_TONE_KEY = "selectedColorUnderTone";
 
-
 export const saveSkinTone = (color: string) => {
-  const data = { color };  
+  const data = { color };
 
   Cookies.set(SKIN_TONE_KEY, JSON.stringify(data), { expires: 7 });
 };
@@ -23,7 +22,6 @@ export const getSkinTone = (): string | null => {
     return null;
   }
 };
-
 
 export const appendUnderTone = (color: string) => {
   const raw = Cookies.get(UNDER_TONE_KEY);
@@ -56,6 +54,7 @@ export const getUnderTone = (): string[] => {
   }
 };
 
-export const clearUnderTone = () => {
+export const clearCookies = () => {
   Cookies.remove(UNDER_TONE_KEY);
+  Cookies.remove(SKIN_TONE_KEY);
 };

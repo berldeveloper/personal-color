@@ -1,16 +1,14 @@
-import CarouselLips from "../CarouselLips";
-import Cushion from "./center/Cushion";
-import Lips from "./center/Lips";
-import ClosestPartner from "./left/ClosestPartner";
-import ColorPalette from "./left/ColorPalette";
-import HeaderLeft from "./left/HeaderLeft";
+import Cushion from "./Cushion";
+import ColorPalette from "./ColorPalette";
+import HeaderLeft from "./HeaderLeft";
+import ProductLip from "../ProductLip";
 
 const ResultComponent = () => {
   return (
-    <div className="bg-main min-h-screen grid md:grid-cols-3 p-3">
+    <div className="bg-result min-h-screen grid md:grid-cols-2 p-3">
       {/* kiri */}
-      <div className="flex flex-col">
-        <div>
+      <div className="flex flex-col items-center">
+        <div className="w-[50vw]">
           <HeaderLeft />
         </div>
 
@@ -19,24 +17,17 @@ const ResultComponent = () => {
         </div>
 
         <div className="md:w-[35vw] mb-4">
-          <ClosestPartner />
+          <div className="w-full md:pt-0 md:z-50 flex flex-col items-center">
+            <Cushion />
+          </div>
         </div>
       </div>
 
-      {/* tengah */}
-      <div className="w-full md:pt-0 md:z-50 flex flex-col items-center">
-        <Cushion />
-
-        {/* <Lips /> */}
-
-        <div className="mt-10 p-3 bg-white rounded-lg flex flex-col items-center justify-center">
-          
-          <div className="p-3 border-blue-900 font-bold text-berl border rounded-lg">
-             Nama Produk
-          </div>
-
-          <CarouselLips />
-        </div>
+      {/* kanan */}
+      <div className="flex flex-col gap-6 items-center">
+        <ProductLip />
+        <ProductLip />
+        <ProductLip />
       </div>
     </div>
   );
