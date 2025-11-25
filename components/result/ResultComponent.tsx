@@ -13,11 +13,10 @@ const ResultComponent = async ({ trx }: { trx: string }) => {
   const data = await res.json();
   const dataUndertone = data.undertone;
 
-  console.log("data undertone :", dataUndertone);
+  // console.log("data undertone :", dataUndertone);
 
-  const lipData = dataUndertone; // ini object: Lip Mate, Lip Velvet, dll
+  const lipData = dataUndertone;
 
-  // Convert jadi array gampang
   const lipMateList =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     lipData?.["Lip Mate"]?.map((item: any) => ({
@@ -60,9 +59,7 @@ const ResultComponent = async ({ trx }: { trx: string }) => {
       {/* kanan */}
       <div className="flex flex-col gap-6 items-center">
         <ProductLip title="B ERL LIP MATE" products={lipMateList} />
-
         <ProductLip title="B ERL LIP VELVET" products={lipVelvetList} />
-
         <ProductLip title="B ERL LIP STAIN" products={lipStainList} />
       </div>
 

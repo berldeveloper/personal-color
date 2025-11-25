@@ -4,11 +4,6 @@ import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { renderToString } from "react-dom/server";
-
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "../ui/button";
-import Place from "@/public/flower.png";
-import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { BadgeCheckIcon, MapPin } from "lucide-react";
 

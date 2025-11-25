@@ -80,7 +80,7 @@ const PalettePage = ({
                     setSelectedPalette(img);
                     const color = getColorFromFilename(img);
                     // console.log(color);
-                    if (onNext) onNext(color); // <<< WAJIB
+                    if (onNext) onNext(color);
                   }}
                   className="rounded-full border-[3px] transition-all w-12 h-12"
                   style={{

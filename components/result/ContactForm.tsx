@@ -18,6 +18,7 @@ import {
   getFromCookies,
   getSkinTone,
   getUnderTone,
+  removeCookie,
   saveToCookies,
 } from "@/lib/utils/cookies";
 
@@ -68,7 +69,10 @@ const ContactForm = () => {
       console.log("Response API:", result);
 
       if (result.success && result.trx) {
-        console.log("TRX:", result.trx);
+        // console.log("TRX:", result.trx);
+
+        removeCookie("selectedColorUnderTone");
+        removeCookie("selectedColorSkinTone");
 
         router.push(`/result/${result.trx}`);
       } else {
