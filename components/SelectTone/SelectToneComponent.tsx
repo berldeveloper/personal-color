@@ -36,6 +36,7 @@ const SelectTone = ({
         label="NEXT"
         color={selectedColor}
         mode={mode}
+        pageIndex={pageIndex}
       />
 
       <div className="w-[80vw]">

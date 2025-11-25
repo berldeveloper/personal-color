@@ -21,7 +21,7 @@ const ClosestPartner = () => {
           <h1 className="berl-btn text-center p-3">Mitra Terdekat</h1>
         </div>
 
-        <div className="w-[50vw] h-[40vh] overflow-hidden">
+        <div className="w-[80vw] h-[40vh] overflow-hidden">
           <Map locations={locations} />
         </div>
       </div>

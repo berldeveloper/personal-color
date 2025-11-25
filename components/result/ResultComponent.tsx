@@ -38,32 +38,34 @@ const ResultComponent = async ({ trx }: { trx: string }) => {
   // console.log("DATA RESULT SERVER:", data);
 
   return (
-    <div className="bg-result min-h-screen grid md:grid-cols-2 p-3">
-      {/* kiri */}
-      <div className="flex flex-col items-center">
-        <div className="w-[50vw]">
-          <HeaderLeft />
-        </div>
+    <div className="bg-result min-h-screen ">
+      <div className="grid md:grid-cols-2 p-3">
+        {/* kiri */}
+        <div className="flex flex-col items-center">
+          <div className="w-[50vw]">
+            <HeaderLeft />
+          </div>
 
-        <div className="pt-[30vh] md:w-[35vw] mb-3">
-          <ColorPalette />
-        </div>
+          <div className="pt-[25vh] md:w-[35vw] mb-3">
+            <ColorPalette />
+          </div>
 
-        <div className="md:w-[35vw] mb-4">
-          <div className="w-full md:pt-0 md:z-50 flex flex-col items-center">
-            <Cushion CushionImage={data.depth_level} />
+          <div className="md:w-[35vw] mb-4">
+            <div className="w-full md:pt-0 md:z-50 flex flex-col items-center">
+              <Cushion CushionImage={data.depth_level} />
+            </div>
           </div>
         </div>
+
+        {/* kanan */}
+        <div className="flex flex-col gap-1 items-center">
+          <ProductLip title="B ERL LIP MATE" products={lipMateList} />
+          <ProductLip title="B ERL LIP VELVET" products={lipVelvetList} />
+          <ProductLip title="B ERL LIP STAIN" products={lipStainList} />
+        </div>
       </div>
 
-      {/* kanan */}
-      <div className="flex flex-col gap-6 items-center">
-        <ProductLip title="B ERL LIP MATE" products={lipMateList} />
-        <ProductLip title="B ERL LIP VELVET" products={lipVelvetList} />
-        <ProductLip title="B ERL LIP STAIN" products={lipStainList} />
-      </div>
-
-      <div>
+      <div className="mt-5 pb-[10vh]">
         <ClosestPartner />
       </div>
     </div>
