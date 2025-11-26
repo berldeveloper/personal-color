@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import PalettePage from "@/components/pallate/PalettePage";
 import ButtonBack from "@/components/ui/ButtonBack";
 import ButtonNext from "@/components/ui/ButtonNext";
@@ -26,21 +26,26 @@ const SelectTone = ({
   mode,
   pageIndex,
 }: UndertoneProps) => {
-  const [selectedColor, setSelectedColor] = useState<string>("");
+  const [selectedColor, setSelectedColor] = useState("");
+
+  const handleSelectColor = useCallback((color: string) => {
+    setSelectedColor(color);
+  }, []);
 
   return (
-    <div className="bg-main min-h-screen flex justify-center items-center pt-16 pb-10 px-4">
-      <ButtonBack href={urlBack} label="BACK" />
+    <div className="bg-main min-h-screen flex justify-center items-center">
+      {/* <ButtonBack href={urlBack} label="BACK" />
       <ButtonNext
         href={urlNext}
         label="NEXT"
         color={selectedColor}
         mode={mode}
         pageIndex={pageIndex}
-      />
+      /> */}
 
-      <div className="w-[80vw]">
+      <div className="w-90 md:w-[50vw]">
         <PalettePage
+          urlBack={urlBack}
           pageIndex={pageIndex}
           paletteImages={paletteImages}
           nextTone={urlNext}
@@ -48,7 +53,7 @@ const SelectTone = ({
           description={description}
           judulTone={judulTone}
           mode={mode}
-          onNext={(color) => setSelectedColor(color)}
+          onNext={handleSelectColor}
         />
       </div>
     </div>

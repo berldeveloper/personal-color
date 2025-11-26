@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { memo } from "react";
 
 const CardPreview = ({
   capturedImg,
@@ -8,8 +9,8 @@ const CardPreview = ({
   selectedPalette: string | null;
 }) => {
   return (
-    <div className="w-full flex items-center justify-center">
-      <div className="relative w-[250px] h-[220px] xl:w-[650px] xl:h-[620px] rounded-2xl shadow-lg flex items-center justify-center overflow-hidden">
+    <div className="md:min-w-[450px] xl:min-h-[420px] not-only:flex items-center justify-center">
+      <div className="relative w-[250px] h-[220px] md:w-full md:h-full rounded-2xl shadow-lg flex items-center justify-center overflow-hidden">
         {capturedImg && (
           <Image
             src={capturedImg}
@@ -32,4 +33,4 @@ const CardPreview = ({
   );
 };
 
-export default CardPreview;
+export default memo(CardPreview);

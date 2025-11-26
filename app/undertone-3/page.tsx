@@ -1,8 +1,6 @@
 import Undertone from "@/components/SelectTone/SelectToneComponent";
 import { getTone } from "@/lib/selectTone/getTone";
 
-export const dynamic = "force-dynamic";
-
 const Page = async () => {
   const endpoint = "undertone3";
   const depthLevel = await getTone({ endpoint });

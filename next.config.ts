@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // cacheComponents: true,
   reactCompiler: true,
   images: {
-    domains: ["s3.berlstore.com"], // tambahkan host eksternal
+    domains: ["s3.berlstore.com"],
   },
 };
 

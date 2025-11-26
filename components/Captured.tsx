@@ -68,6 +68,8 @@ const Captured = () => {
     localStorage.setItem("captured-image", imgData);
     setCapturedImg(imgData);
 
+    window.dispatchEvent(new Event("captured-image-updated"));
+
     setMode("preview");
   };
 

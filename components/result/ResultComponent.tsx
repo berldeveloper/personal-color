@@ -2,9 +2,9 @@ import Cushion from "./Cushion";
 import ColorPalette from "./ColorPalette";
 import HeaderLeft from "./HeaderLeft";
 import ProductLip from "../ProductLip";
-import ClosestPartner from "./ClosestPartner";
 import HeaderRight from "./headerRight";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const ResultComponent = async ({ trx }: { trx: string }) => {
   const res = await fetch(
@@ -18,6 +18,10 @@ const ResultComponent = async ({ trx }: { trx: string }) => {
   // console.log("data undertone :", dataUndertone);
 
   const lipData = dataUndertone;
+
+  const undertone =
+  lipData?.["Lip Mate"]?.[0]?.undertone_result_id ?? null;
+
 
   const lipMateList =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,7 +63,7 @@ const ResultComponent = async ({ trx }: { trx: string }) => {
 
         {/* kanan */}
         <div className="flex flex-col gap-1 items-center">
-          <HeaderRight />
+          <HeaderRight undertone={undertone}/>
           <ProductLip title="B ERL LIP MATE" products={lipMateList} />
           <ProductLip title="B ERL LIP VELVET" products={lipVelvetList} />
           <ProductLip title="B ERL LIP STAIN" products={lipStainList} />
@@ -67,7 +71,9 @@ const ResultComponent = async ({ trx }: { trx: string }) => {
       </div>
 
       <div className="mt-5 flex gap-3 items-center justify-center py-5">
-        <Button className="berl-btn">Finish</Button>
+        <Link href="/">
+          <Button className="berl-btn">Finish</Button>
+        </Link>
         <Button className="berl-btn">Mitra Terdekat</Button>
       </div>
     </div>

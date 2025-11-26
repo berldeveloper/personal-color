@@ -1,13 +1,9 @@
 "use client";
 
 import CardPreview from "@/components/ui/CardPreview";
-import {
-  appendUnderTone,
-  saveSkinTone,
-  setUnderToneByPage,
-} from "@/lib/utils/cookies";
+import { saveSkinTone, setUnderToneByPage } from "@/lib/utils/cookies";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface PalettePageProps {
   paletteImages: string[];
@@ -15,6 +11,7 @@ interface PalettePageProps {
   description?: string;
   tone?: string;
   judulTone?: string;
+  urlBack: string;
   pageIndex: number;
   mode: "undertone" | "skintone";
   onNext?: (color: string) => void;
@@ -32,138 +29,152 @@ const PalettePage = ({
   tone,
   judulTone,
   mode,
+  urlBack,
   pageIndex,
   onNext,
 }: PalettePageProps) => {
-  const [capturedImg] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("captured-image");
-    }
-    return null;
-  });
+  const [capturedImg] = useState(() =>
+    typeof window !== "undefined"
+      ? localStorage.getItem("captured-image")
+      : null
+  );
 
   const [selectedPalette, setSelectedPalette] = useState<string>(
     paletteImages?.[0] ?? ""
   );
 
+  const paletteColors = useMemo(
+    () =>
+      paletteImages.map((img) => ({
+        img,
+        color: getColorFromFilename(img),
+      })),
+    [paletteImages]
+  );
+
+  const handleSelect = useCallback(
+    (img: string) => {
+      setSelectedPalette(img);
+      const color = getColorFromFilename(img);
+      onNext?.(color);
+    },
+    [onNext]
+  );
+
   useEffect(() => {
     if (paletteImages.length > 0) {
-      const defaultImg = paletteImages[0];
-      const defaultColor = getColorFromFilename(defaultImg);
-      if (onNext) onNext(defaultColor);
+      const defaultColor = getColorFromFilename(paletteImages[0]);
+      onNext?.(defaultColor);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [paletteImages, onNext]);
+
+  const persistColor = useCallback(() => {
+    const color = getColorFromFilename(selectedPalette);
+    if (mode === "skintone") {
+      saveSkinTone(color);
+    } else {
+      setUnderToneByPage(color, pageIndex);
+    }
+    onNext?.(color);
+  }, [selectedPalette, mode, pageIndex, onNext]);
 
   return (
-    <div
-      className="flex flex-col-reverse lg:flex-row justify-center items-center px-4 gap-10 lg:gap-14 
-    "
-    >
-      <div
-        className="md:hidden w-full 
-      "
-      >
-        <div className="backdrop-blur-3xl p-4 rounded-2xl shadow-lg w-full  flex flex-col items-center">
-          <div className="w-56 h-72 overflow-hidden flex items-center justify-center  mt-2">
+    <div className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col-reverse justify-center items-center px-5 py-5 md:px-0 md:py-5 w-full min-h-[80vh]  md:min-h-[75vh] gap-10 lg:gap-7 bg-card-component md:shadow-lg rounded-r-full rounded-l-full">
+        {/* tampilan mobile */}
+        <div className="md:hidden w-full h-full">
+          <div className="flex flex-col items-center">
             <CardPreview
               capturedImg={capturedImg}
               selectedPalette={selectedPalette}
             />
-          </div>
 
-          <div className="w-full  bg-[#C36262] text-white text-center text-xs py-2 mt-4 rounded-md font-semibold">
-            {description}
-          </div>
+            <div className="w-full  bg-[#C36262] text-white text-center text-xs py-2 mt-4 rounded-md font-semibold">
+              {description}
+            </div>
 
-          <div className="flex gap-2 mt-6">
-            {paletteImages.map((img, idx) => {
-              const color = getColorFromFilename(img);
-              return (
+            <div className="flex gap-2 mt-6">
+              {paletteColors.map(({ img, color }, idx) => (
                 <button
                   key={idx}
-                  onClick={() => {
-                    setSelectedPalette(img);
-                    const color = getColorFromFilename(img);
-                    // console.log(color);
-                    if (onNext) onNext(color);
-                  }}
-                  className="rounded-full border-[3px] transition-all w-12 h-12"
+                  onClick={() => handleSelect(img)}
+                  className="rounded-full border-[3px] transition-all min-w-12 min-h-12"
                   style={{
                     backgroundColor: color,
                     borderColor: selectedPalette === img ? "#7C2C2C" : "white",
                   }}
                 />
-              );
-            })}
+              ))}
+            </div>
+
+            <div className="flex gap-3">
+              <Link href={urlBack} className="mt-4">
+                <button className="mt-8 cursor-pointer w-[100px] bg-[#7C2C2C] text-white py-3 rounded-full font-bold shadow-md hover:opacity-90 transition">
+                  Back
+                </button>
+              </Link>
+              <Link href={nextTone} className="mt-4" onClick={persistColor}>
+                <button className="mt-8 cursor-pointer w-[100px] bg-[#7C2C2C] text-white py-3 rounded-full font-bold shadow-md hover:opacity-90 transition">
+                  Next
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* tampilan dekstop */}
-      <div
-        className="hidden md:flex bg-component p-8 rounded-xl shadow-md w-full max-w-md flex-col items-center
-      "
-      >
-        <div className="w-full text-white text-center font-bold text-lg bg-[#7C2C2C] py-3 rounded-lg">
-          {tone}
+        {/* tampilan dekstop */}
+        <div className="hidden md:flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center w-1/2">
+            <div className="flex gap-5 mt-6 place-items-center">
+              {paletteColors.map(({ img, color }, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSelect(img)}
+                  className="rounded-full border-4 transition-all cursor-pointer w-12 h-12"
+                  style={{
+                    backgroundColor: color,
+                    borderColor:
+                      selectedPalette === img ? "#7C2C2C" : "transparent",
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="py-2">
+              {mode === "undertone" && (
+                <>
+                  <h1 className="text-[#7D4754]  font-bold">{judulTone}</h1>
+                </>
+              )}
+              <p className="text-[#7D4754] font-semibold hidden md:block">
+                {description}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <Link href={urlBack} className="mt-4">
+              <button className="mt-8 cursor-pointer w-[100px] bg-[#7C2C2C] text-white py-3 rounded-full font-bold shadow-md hover:opacity-90 transition">
+                Back
+              </button>
+            </Link>
+            <Link href={nextTone} className="mt-4" onClick={persistColor}>
+              <button className="mt-8 cursor-pointer w-[100px] bg-[#7C2C2C] text-white py-3 rounded-full font-bold shadow-md hover:opacity-90 transition">
+                Next
+              </button>
+            </Link>
+          </div>
         </div>
 
-        <div className="flex gap-5 mt-6 place-items-center">
-          {paletteImages.map((img, idx) => {
-            const color = getColorFromFilename(img);
-            return (
-              <button
-                key={idx}
-                onClick={() => setSelectedPalette(img)}
-                className="rounded-full border-4 transition-all cursor-pointer w-16 h-16"
-                style={{
-                  backgroundColor: color,
-                  borderColor:
-                    selectedPalette === img ? "#7C2C2C" : "transparent",
-                }}
-              />
-            );
-          })}
+        {/* card preview dekstop */}
+        <div className="hidden md:flex min-h-[40vh] w-[250px] xl:w-full justify-center">
+          <CardPreview
+            capturedImg={capturedImg}
+            selectedPalette={selectedPalette}
+          />
         </div>
 
-        <Link
-          href={nextTone}
-          onClick={() => {
-            // e.preventDefault();
-            const color = getColorFromFilename(selectedPalette);
-            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-            mode === "skintone"
-              ? saveSkinTone(color)
-              : setUnderToneByPage(color, pageIndex);
-
-            if (onNext) onNext(color);
-          }}
-          className="w-full mt-4 "
-        >
-          <button className="mt-8 cursor-pointer w-full bg-[#7C2C2C] text-white py-3 rounded-full font-bold shadow-md hover:opacity-90 transition">
-            Next
-          </button>
-        </Link>
-      </div>
-
-      {/* card preview dekstop */}
-      <div className="hidden md:flex w-[350px] xl:w-full justify-center">
-        <CardPreview
-          capturedImg={capturedImg}
-          selectedPalette={selectedPalette}
-        />
-      </div>
-
-      <div className="mt-10">
-        {mode === "undertone" && (
-          <>
-            <h1 className="text-[#7D4754]  font-bold">{judulTone}</h1>
-          </>
-        )}
-        <p className="text-[#7D4754] font-semibold hidden md:block">
-          {description}
-        </p>
+        <h1 className="text-[#7D4754] text-3xl font-baloo font-bold">{tone}</h1>
       </div>
     </div>
   );
