@@ -21,7 +21,7 @@ import {
   removeCookie,
   saveToCookies,
 } from "@/lib/utils/cookies";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingModal from "../ui/loadingModal";
 
 const ContactForm = () => {
@@ -38,6 +38,16 @@ const ContactForm = () => {
       nohp: "",
     },
   });
+
+  useEffect(() => {
+    const userOld = getFromCookies<ContactSchemaType>("contact-data");
+
+    if (userOld) {
+      form.setValue("name", userOld.name || "");
+      form.setValue("email", userOld.email || "");
+      form.setValue("nohp", userOld.nohp || "");
+    }
+  }, []);
 
   const onSubmit = async (data: ContactSchemaType) => {
     saveToCookies("contact-data", data);
