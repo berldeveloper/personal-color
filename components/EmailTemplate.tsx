@@ -35,11 +35,11 @@ export const EmailTemplate = ({ name, message, url }: EmailTemplateProps) => (
         <Container className="w-[680px] max-w-full mx-auto bg-white shadow-lg rounded-md overflow-hidden">
           {/* HEADER */}
           <Section className="bg-[#ffffff] border-b border-[#e4e4e7] p-5 px-8">
-            <Img
+            {/* <Img
               width={150}
               src={`${baseUrl}/result/logo.jpeg`}
               alt="BERL Cosmetics"
-            />
+            /> */}
           </Section>
 
           {/* HERO */}
@@ -54,12 +54,12 @@ export const EmailTemplate = ({ name, message, url }: EmailTemplateProps) => (
 
             <Row className="mt-6">
               <Column>
-                <Img
+                {/* <Img
                   width={240}
                   className="rounded-md"
                   src={`${baseUrl}/result/logo.jpeg`}
                   alt="BERL Beauty Banner"
-                />
+                /> */}
               </Column>
             </Row>
           </Section>
@@ -138,11 +138,11 @@ export const EmailTemplate = ({ name, message, url }: EmailTemplateProps) => (
 
             <Hr className="my-6 border-[#ddd]" />
 
-            <Img
+            {/* <Img
               width={110}
               src={`${baseUrl}/result/logo.jpeg`}
               alt="BERL Cosmetics"
-            />
+            /> */}
 
             <Text className="text-[12px] text-[#7a7a7a] mt-2">
               <strong>BERL Cosmetics</strong>, Indonesia
