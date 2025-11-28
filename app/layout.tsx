@@ -44,6 +44,9 @@ const RubikDirt = Rubik_Dirt({
 export const metadata: Metadata = {
   title: "B erl Cosmtics - Beautiful | Confident | You",
   description: "B erl Personal Color",
+  icons: {
+    icon: "/favicon.ico"
+  }
 };
 
 export default function RootLayout({
@@ -54,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable}  ${baloo2.variable} ${tangerine.variable} ${RubikDirt.variable}   antialiased`}
+        className={`${baloo2.variable} ${geistSans.variable} ${geistMono.variable}  ${tangerine.variable} ${RubikDirt.variable}   antialiased`}
       >
         {children}
       </body>

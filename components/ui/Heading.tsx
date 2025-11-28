@@ -9,7 +9,7 @@ const Heading = ({ size = "md" }: HeadingProps) => {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <div className="mb-10">
-        <Image src={logo} width={100} height={100} alt="logo"/>
+        <Image src={logo} width={200} height={200} alt="logo"/>
       </div>
     </div>
   );
