@@ -1,3 +1,6 @@
+import logo from "@/public/logo.png"
+import Image from "next/image";
+
 interface HeadingProps {
   size: "sm" | "md" | "lg";
 }
@@ -6,14 +9,7 @@ const Heading = ({ size = "md" }: HeadingProps) => {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <div className="mb-10">
-        <p
-          className={`text-[#7D4754] font-semibold font-baloo tracking-wide text-sm md:text-${size}`}
-        >
-          Berl
-        </p>
-        <p className={`text-[#7D4754] tracking-wider font-baloo font-medium text-sm md:text-${size}`}>
-          COLOR EXPERT
-        </p>
+        <Image src={logo} width={100} height={100} alt="logo"/>
       </div>
     </div>
   );
