@@ -37,22 +37,15 @@ const HintComponent = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-6 px-6 py-5">
-        <Heading size="lg" />
+        {/* <Heading size="lg" /> */}
 
         <h1 className="text-berl font-bold text-1xl md:text-3xl leading-tight">
           POSISIKAN WAJAH TEPAT DI TENGAH
           <br /> POSISI KAMERA
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="hidden md:flex flex-col justify-center items-center text-center pt-4 gap-4 text-white font-bold">
-            {dataCard.map((item, index) => (
-              <CardHint key={index} judul={item.judul} />
-            ))}
-          </div>
-          <div className="bg-component rounded-4xl px-16 py-12 shadow-lg">
-            <Image src={HomeHint} alt="hint-camera" width={300} height={200} />
-          </div>
+        <div className="bg-component rounded-4xl px-16 py-12 shadow-lg">
+          <Image src={HomeHint} alt="hint-camera" width={300} height={200} />
         </div>
 
         <div className="flex gap-3">
