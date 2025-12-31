@@ -24,18 +24,16 @@ const reorderProducts = (
   });
 };
 
-
-
 const ResultComponent = async ({ trx }: { trx: string }) => {
-  // const res = await fetch(
-  //   `https://market.berlstore.com/api/personalcolor/resulttrx?trx=${trx}`,
-  //   { cache: "no-store" }
-  // );
-
   const res = await fetch(
-    `http://localhost:9092/api/personalcolor/resulttrx?trx=${trx}`,
+    `https://market.berlstore.com/api/personalcolor/resulttrx?trx=${trx}`,
     { cache: "no-store" }
   );
+
+  // const res = await fetch(
+  //   `http://localhost:9022/api/personalcolor/resulttrx?trx=${trx}`,
+  //   { cache: "no-store" }
+  // );
 
   const data = await res.json();
   const dataUndertone = data.undertone;
@@ -72,8 +70,7 @@ const ResultComponent = async ({ trx }: { trx: string }) => {
       src: item.imagevarian,
     })) ?? [];
 
-
-    console.log(eyeBrowList)
+  console.log(eyeBrowList);
   // console.log("DATA RESULT SERVER:", data);
 
   return (
