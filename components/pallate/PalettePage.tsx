@@ -59,7 +59,7 @@ const PalettePage = ({
 
   const handleSelect = useCallback(
     (img: string) => {
-      // setIsLoadingPreview(true);
+      setIsLoadingPreview(true);
       setSelectedPalette(img);
       const color = getColorFromFilename(img);
       onNext?.(color);
