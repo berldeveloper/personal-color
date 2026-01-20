@@ -19,52 +19,51 @@ const Home = () => {
 
   const handleAllow = () => {
     setLoading(true);
+    window.location.href = "/hint";
+    // if (!navigator.geolocation) {
+    //   alert("Browser kamu tidak mendukung akses lokasi.");
+    //   setLoading(false);
+    //   return;
+    // }
 
-    if (!navigator.geolocation) {
-      alert("Browser kamu tidak mendukung akses lokasi.");
-      setLoading(false);
-      return;
-    }
+    // const options = {
+    //   enableHighAccuracy: true,
+    //   timeout: 10000, // 10 detik timeout
+    //   maximumAge: 0,
+    // };
 
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 10000, // 10 detik timeout
-      maximumAge: 0
-    };
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => {
+    //     setLoading(false);
+    //     const { latitude, longitude } = position.coords;
+    //     console.log("Lokasi berhasil:", latitude, longitude);
+    //     localStorage.setItem("user_lat", latitude.toString());
+    //     localStorage.setItem("user_long", longitude.toString());
+    //   },
+    //   (error) => {
+    //     setLoading(false);
+    //     let errorMessage = "Gagal mendapatkan lokasi. ";
 
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLoading(false);
-        const { latitude, longitude } = position.coords;
-        console.log("Lokasi berhasil:", latitude, longitude);
-        localStorage.setItem("user_lat", latitude.toString());
-        localStorage.setItem("user_long", longitude.toString());
+    //     switch (error.code) {
+    //       case error.PERMISSION_DENIED:
+    //         errorMessage +=
+    //           "Izin lokasi ditolak. Harap izinkan akses lokasi di pengaturan browser.";
+    //         break;
+    //       case error.POSITION_UNAVAILABLE:
+    //         errorMessage += "Informasi lokasi tidak tersedia. Coba lagi nanti.";
+    //         break;
+    //       case error.TIMEOUT:
+    //         errorMessage += "Waktu permintaan lokasi habis. Silakan coba lagi.";
+    //         break;
+    //       default:
+    //         errorMessage += "Terjadi kesalahan tidak dikenal.";
+    //     }
 
-        window.location.href = "/hint";
-      },
-      (error) => {
-        setLoading(false);
-        let errorMessage = "Gagal mendapatkan lokasi. ";
-        
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            errorMessage += "Izin lokasi ditolak. Harap izinkan akses lokasi di pengaturan browser.";
-            break;
-          case error.POSITION_UNAVAILABLE:
-            errorMessage += "Informasi lokasi tidak tersedia. Coba lagi nanti.";
-            break;
-          case error.TIMEOUT:
-            errorMessage += "Waktu permintaan lokasi habis. Silakan coba lagi.";
-            break;
-          default:
-            errorMessage += "Terjadi kesalahan tidak dikenal.";
-        }
-        
-        alert(errorMessage);
-        console.error("Geolocation error:", error);
-      },
-      options
-    );
+    //     alert(errorMessage);
+    //     console.error("Geolocation error:", error);
+    //   },
+    //   options,
+    // );
   };
 
   return (
@@ -90,7 +89,8 @@ const Home = () => {
       <div className="flex flex-col gap-4 w-full max-w-[200px]">
         <Button
           className="berl-btn w-full py-3 text-base sm:text-lg"
-          onClick={() => setOpen(true)}
+          // onClick={() => setOpen(true)}
+          onClick={() => (window.location.href = "/hint")}
         >
           Mulai
         </Button>
