@@ -1,3 +1,4 @@
+import { addRequestMeta } from "next/dist/server/request-meta";
 import { z } from "zod";
 
 export const contactSchema = z.object({
@@ -7,6 +8,7 @@ export const contactSchema = z.object({
     .string()
     .min(10, "Nomor HP minimal 10 digit")
     .regex(/^[0-9]+$/, "Hanya boleh angka"),
+  address: z.string().min(5, "Alamat minimal 5 karakter"),
 });
 
 export type ContactSchemaType = z.infer<typeof contactSchema>;

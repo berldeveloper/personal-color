@@ -9,6 +9,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { contactSchema, ContactSchemaType } from "@/lib/schemas/contactSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,6 +37,7 @@ const ContactForm = () => {
       name: "",
       email: "",
       nohp: "",
+      address: "",
     },
   });
 
@@ -46,6 +48,7 @@ const ContactForm = () => {
       form.setValue("name", userOld.name || "");
       form.setValue("email", userOld.email || "");
       form.setValue("nohp", userOld.nohp || "");
+      form.setValue("address", userOld.address || "");
     }
   }, []);
 
@@ -66,6 +69,7 @@ const ContactForm = () => {
         name: contact?.name || "",
         email: contact?.email || "",
         phone: contact?.nohp || "",
+        address: contact?.address || "",
         lat,
         long,
       },
@@ -158,6 +162,20 @@ const ContactForm = () => {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="email@example.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Alamat</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="Alamat" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
